@@ -5,19 +5,20 @@ const serverUrl = "http://localhost:3001";
 
 export default function withSockets(props) {
   return (Component) => () => {
-    const [socketData, setSocketData] = useState("");
+    const [socketDataArray, setSocketDataArray] = useState([]);
 
     useEffect(() => {
       const socket = socketIOClient(serverUrl);
       socket.on("welcomeEvent", (data) => {
-        setSocketData(data);
+        console.log(data);
       });
       socket.on("broadcastEvent", (data) => {
-        setSocketData(data);
+        setSocketDataArray((prevData) => [...prevData, data]);
       });
       // CLEAN UP THE EFFECT
       return () => socket.disconnect();
     }, []);
-    return <Component socketData={socketData}></Component>;
+
+    return <Component socketDataArray={socketDataArray}></Component>;
   };
 }

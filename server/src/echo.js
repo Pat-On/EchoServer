@@ -3,6 +3,7 @@ function echo(request) {
     fullUrl: `${request.protocol}://${request.get("host")}${
       request.originalUrl
     }`,
+    timestamp: Date().toString(),
     headers: request.headers,
     body: request.body,
   };

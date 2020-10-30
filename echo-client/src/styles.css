@@ -2,18 +2,38 @@ body {
   font-size: 20px;
 }
 
-.users {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+.css-flex-table {
+  display: flex;
+  width: 80%;
 }
 
-.user {
-  padding: 2rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+.css-flex-table-header,
+.css-flex-table-body {
+  display: flex;
+  flex: 0 0 100%;
 }
 
-.user > div {
-  margin-top: 1rem;
-  color: #ccc;
+.css-flex-table,
+.css-flex-table-body {
+  flex-wrap: wrap;
+}
+
+.css-flex-table-header div {
+  padding: 6px;
+  text-align: center;
+  font-weight: bold;
+  background-color: rgb(191, 191, 191);
+}
+
+.css-flex-table-header div,
+.css-flex-table-body div {
+  flex: 0 1 100px;
+  padding: 0 6px;
+  border: 1px solid rgb(255, 255, 255);
+  box-sizing: border-box;
+}
+
+.css-flex-table-header div:nth-of-type(4n),
+.css-flex-table-body div:nth-of-type(4n) {
+  flex: 0 1 calc(100% - 308px);
 }
