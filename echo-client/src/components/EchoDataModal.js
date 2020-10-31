@@ -24,7 +24,7 @@ const Modal = ({ handleClose, show, currentEchoData, children }) => {
       <section className="modal-main">
         {console.log(currentEchoData)}
         {Object.keys(currentEchoData).length > 0 ? renderModalData() : null}
-        <button class="btn" onClick={handleClose}>
+        <button class="btn btn-light" onClick={handleClose}>
           close
         </button>
       </section>
