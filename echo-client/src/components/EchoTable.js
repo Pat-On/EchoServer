@@ -34,6 +34,7 @@ function EchoTable({ socketDataArray }) {
         {sockertArrayTimeSortedDesc.map((echoData, i) => {
           return (
             <tr onClick={() => renderModal(echoData)}>
+              <td>{sockertArrayTimeSortedDesc.length - i}</td>
               <td>{echoData.fullUrl}</td>
               <td>{echoData.timestamp}</td>
             </tr>
@@ -47,10 +48,6 @@ function EchoTable({ socketDataArray }) {
     <div>
       <h1>Echo</h1>
 
-      <button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </button>
-
       <EchoDataModal
         show={show}
         handleClose={handleClose}
@@ -60,6 +57,7 @@ function EchoTable({ socketDataArray }) {
       <table className="table table-striped">
         <thead>
           <tr>
+            <th scope="col">#</th>
             <th scope="col">Full Url</th>
             <th scope="col">Timestamp</th>
           </tr>
