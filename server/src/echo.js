@@ -4,6 +4,9 @@ function echo(request) {
       request.originalUrl
     }`,
     timestamp: Date().toString(),
+    requestIp: [request.ip, ...request.headers["x-forwarded-for"].split(",")],
+    method: request.method,
+    requestQuery: request.query,
     headers: request.headers,
     body: request.body,
   };
