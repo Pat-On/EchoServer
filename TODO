@@ -1,0 +1,14 @@
+* test POST body
+
+* broadcast server exception error message and details about request that caused it.
+
+* create docker image
+    - for server: copy npm modules in it (do not install when creating image for faster build).
+    - for client: just the build folder
+
+* add search
+
+* persistence in server
+    - sqlite
+    - use it as a LRU cache (circular)
+
