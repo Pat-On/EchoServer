@@ -8,6 +8,8 @@
 
 * add search
 
+* convert timestamp in the client according to timezone
+
 * persistence in server
     - sqlite
     - use it as a LRU cache (circular)
