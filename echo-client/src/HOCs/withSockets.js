@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import socketIOClient from "socket.io-client";
 
-const serverUrl = "http://localhost:3001";
-
 export default function withSockets(props) {
   return (Component) => () => {
     const [socketDataArray, setSocketDataArray] = useState([]);
 
     useEffect(() => {
+      const serverUrl = window.location.origin;
+      console.log(`serverUrl: ${serverUrl}`);
       const socket = socketIOClient(serverUrl);
       socket.on("welcomeEvent", (data) => {
         console.log(data);
