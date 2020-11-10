@@ -11,13 +11,13 @@ function EchoTable({ dataArray, setDataArray }) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  // useEffect(async () => {
-  //   const serverUrl = window.location.origin;
-  //   const response = await fetch(`${serverUrl}/echo-ui/messages`);
-  //   const data = await response.json();
-  //   setDataArray(data);
-  //   console.log(data);
-  // }, []);
+  useEffect(async () => {
+    const serverUrl = window.location.origin;
+    const response = await fetch(`${serverUrl}/echo-ui/messages`);
+    const data = await response.json();
+    console.log(data);
+    setDataArray(data);
+  }, []);
 
   function renderModal(echoData) {
     setCurrentEchoData(echoData);

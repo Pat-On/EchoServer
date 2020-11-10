@@ -24,10 +24,16 @@ router.get("/echo-ui", async (req, res) => {
 });
 
 router.get("/echo-ui/messages", async (req, res) => {
-  const echoMessages = await sequelize.models.EchoMessage.findAll({
-    include: { model: sequelize.models.Header, as: "headers" },
+  // TODO: move to storage provider and make sure it looks like a broadcast message (no db properties included)
+  let echoMessages = await sequelize.models.EchoMessage.findAll();
+  echoMessages.map((msg) => {
+    msg.headers = JSON.parse(msg.headers);
+    msg.body = JSON.parse(msg.body);
+    msg.requestQuery = JSON.parse(msg.requestQuery);
+    msg.requestIps = msg.requestIps.split(",");
+    return msg;
   });
-  res.send(JSON.stringify(echoMessages));
+  res.send(echoMessages);
 });
 
 router.all("*", async (req, res) => {

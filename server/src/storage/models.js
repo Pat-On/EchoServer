@@ -8,21 +8,14 @@ function defineModels(sequelize) {
     method: DataTypes.STRING,
     requestQuery: DataTypes.STRING,
     body: DataTypes.STRING,
+    headers: DataTypes.STRING,
   });
-
-  // 1-m relationship
-  var Header = sequelize.define("Header", {
-    name: DataTypes.STRING,
-    value: DataTypes.STRING,
-  });
-
-  EchoMessage.hasMany(Header, { as: "headers" });
 }
 
 function syncDb(sequelize) {
   defineModels(sequelize);
   (() => {
-    sequelize.sync().then((res) => {
+    sequelize.sync({ alter: true }).then((res) => {
       console.log(res);
     });
   })();
