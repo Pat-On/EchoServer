@@ -17,6 +17,9 @@ socketProvider = require("./socketProvider")(server);
 socketProvider.listen();
 socketProvider.broadcast("test");
 
+StorageProvider = require("./storage/storageProvider")();
+sequelize = StorageProvider.connect();
+
 //Routes
 app.use(require("./routes"));
 

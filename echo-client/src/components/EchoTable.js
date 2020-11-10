@@ -1,15 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import EchoDataModal from "./EchoDataModal";
 import withSockets from "../HOCs/withSockets";
 import "../styles/EchoTable.css";
 
-function EchoTable({ socketDataArray }) {
+function EchoTable({ dataArray, setDataArray }) {
   const [show, setShow] = useState(false);
   const [currentEchoData, setCurrentEchoData] = useState({});
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  // useEffect(async () => {
+  //   const serverUrl = window.location.origin;
+  //   const response = await fetch(`${serverUrl}/echo-ui/messages`);
+  //   const data = await response.json();
+  //   setDataArray(data);
+  //   console.log(data);
+  // }, []);
 
   function renderModal(echoData) {
     setCurrentEchoData(echoData);
@@ -25,7 +33,7 @@ function EchoTable({ socketDataArray }) {
   }
 
   function createDataTable(jsonSocketDataArray) {
-    const socketDataArray = jsonSocketDataArray.map(JSON.parse);
+    const socketDataArray = jsonSocketDataArray; //.map(JSON.parse);
     const sockertArrayTimeSortedDesc = sortDataArrayByTimestamp(
       socketDataArray
     );
@@ -62,7 +70,7 @@ function EchoTable({ socketDataArray }) {
             <th scope="col">Timestamp</th>
           </tr>
         </thead>
-        {createDataTable(socketDataArray)}
+        {createDataTable(dataArray)}
       </table>
     </div>
   );

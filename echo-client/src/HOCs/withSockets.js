@@ -3,7 +3,7 @@ import socketIOClient from "socket.io-client";
 
 export default function withSockets(props) {
   return (Component) => () => {
-    const [socketDataArray, setSocketDataArray] = useState([]);
+    const [dataArray, setDataArray] = useState([]);
 
     useEffect(() => {
       const serverUrl = window.location.origin;
@@ -13,12 +13,14 @@ export default function withSockets(props) {
         console.log(data);
       });
       socket.on("broadcastEvent", (data) => {
-        setSocketDataArray((prevData) => [...prevData, data]);
+        setDataArray((prevData) => [...prevData, JSON.parse(data)]);
       });
       // CLEAN UP THE EFFECT
       return () => socket.disconnect();
     }, []);
 
-    return <Component socketDataArray={socketDataArray}></Component>;
+    return (
+      <Component dataArray={dataArray} setDataArray={setDataArray}></Component>
+    );
   };
 }
